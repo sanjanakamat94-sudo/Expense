@@ -1,0 +1,216 @@
+{
+  "info": {
+    "_postman_id": "b2000000-0000-4000-8000-000000000000",
+    "name": "Expense Tracker API",
+    "description": "CRUD + summary routes for the Expense Tracker backend (Express + better-sqlite3).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "00000000"
+  },
+  "item": [
+    {
+      "name": "Create - Add a new expense",
+      "id": "b2000001-0000-4000-8000-000000000001",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Groceries\",\n  \"amount\": 450.50,\n  \"category\": \"Food\",\n  \"date\": \"2026-07-06\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses",
+          "host": ["{{base_url}}"],
+          "path": ["expenses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create - Missing required field (should fail with 400)",
+      "id": "b2000002-0000-4000-8000-000000000002",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"No amount expense\",\n  \"category\": \"Other\",\n  \"date\": \"2026-07-06\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses",
+          "host": ["{{base_url}}"],
+          "path": ["expenses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create - Negative amount (should fail with 400)",
+      "id": "b2000003-0000-4000-8000-000000000003",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Refund test\",\n  \"amount\": -50,\n  \"category\": \"Other\",\n  \"date\": \"2026-07-06\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses",
+          "host": ["{{base_url}}"],
+          "path": ["expenses"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read - Get all expenses (paginated)",
+      "id": "b2000004-0000-4000-8000-000000000004",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses?page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["expenses"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read - Get expenses filtered by category",
+      "id": "b2000005-0000-4000-8000-000000000005",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses?category=Food&page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["expenses"],
+          "query": [
+            { "key": "category", "value": "Food" },
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read - Get expenses filtered by month",
+      "id": "b2000006-0000-4000-8000-000000000006",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses?month=2026-07&page=1&limit=10",
+          "host": ["{{base_url}}"],
+          "path": ["expenses"],
+          "query": [
+            { "key": "month", "value": "2026-07" },
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "10" }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read - Get monthly category summary",
+      "id": "b2000007-0000-4000-8000-000000000007",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses/summary?month=2026-07",
+          "host": ["{{base_url}}"],
+          "path": ["expenses", "summary"],
+          "query": [{ "key": "month", "value": "2026-07" }]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update - Edit an expense by id",
+      "id": "b2000008-0000-4000-8000-000000000008",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 500,\n  \"category\": \"Bills\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses/{{expense_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["expenses", "{{expense_id}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update - Edit a non-existent expense (should fail with 404)",
+      "id": "b2000009-0000-4000-8000-000000000009",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 100\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/expenses/999999",
+          "host": ["{{base_url}}"],
+          "path": ["expenses", "999999"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete - Remove an expense by id",
+      "id": "b200000a-0000-4000-8000-00000000000a",
+      "protocolProfileBehavior": {},
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/expenses/{{expense_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["expenses", "{{expense_id}}"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000", "type": "string" },
+    { "key": "expense_id", "value": "1", "type": "string" }
+  ]
+}
