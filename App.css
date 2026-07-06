@@ -1,0 +1,230 @@
+/* frontend/src/App.css */
+
+body {
+  margin: 0;
+  background: #f6f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222;
+}
+
+#root {
+  width: 100%;
+}
+
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 2rem;
+}
+
+h2 {
+  margin: 0 0 14px;
+  font-size: 1.25rem;
+}
+
+h3 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+}
+
+/* -----------------------------------
+   Shared card style
+----------------------------------- */
+.habit-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e3e6ef;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* -----------------------------------
+   New habit section
+----------------------------------- */
+.new-habit-card {
+  margin-bottom: 24px;
+}
+
+.new-habit-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.new-habit-row input {
+  flex: 1;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #cfd6e4;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.new-habit-row input:focus {
+  border-color: #4f7cff;
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.15);
+}
+
+.new-habit-row button {
+  height: 44px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 10px;
+  background: #4f7cff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.new-habit-row button:hover {
+  background: #3d68e0;
+}
+
+/* -----------------------------------
+   Status and error text
+----------------------------------- */
+.status-text {
+  color: #555;
+  font-size: 1rem;
+}
+
+.error-text {
+  margin-top: 12px;
+  color: #d93025;
+  font-weight: 600;
+}
+
+/* -----------------------------------
+   Habit list section
+----------------------------------- */
+.habits-section {
+  margin-top: 8px;
+}
+
+/* -----------------------------------
+   Streak text
+----------------------------------- */
+.streak-text {
+  margin: 8px 0 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.active-streak {
+  color: #e45c2c;
+}
+
+/* -----------------------------------
+   Check-in button
+----------------------------------- */
+.checkin-button {
+  border: none;
+  border-radius: 10px;
+  background: #4f7cff;
+  color: white;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 14px;
+  transition: background 0.2s ease;
+}
+
+.checkin-button:hover:not(:disabled) {
+  background: #3d68e0;
+}
+
+.checkin-button:disabled {
+  background: #8bc39c;
+  color: #f7fff8;
+  cursor: not-allowed;
+}
+
+/* -----------------------------------
+   7-day history row
+----------------------------------- */
+.history-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.day-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.day-box.done {
+  background: #22c55e;
+  color: white;
+}
+
+.day-box.not-done {
+  background: #eceff5;
+  color: #6b7280;
+}
+
+/* -----------------------------------
+   Delete button
+----------------------------------- */
+.delete-button {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+  color: #d93025;
+}
+
+/* -----------------------------------
+   Responsive layout
+----------------------------------- */
+@media (max-width: 560px) {
+  .app {
+    padding: 18px 12px 32px;
+  }
+
+  .new-habit-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .new-habit-row button {
+    width: 100%;
+  }
+
+  .history-row {
+    gap: 6px;
+  }
+
+  .day-box {
+    width: 32px;
+    height: 32px;
+  }
+}
